@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('group', 400);
             $table->string('key', 400);
             $table->text('value');
-            $table->unsignedBigInteger('created_by');
             $table->softDeletes();
             $table->timestamps();
         });

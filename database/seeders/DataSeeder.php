@@ -13,13 +13,7 @@ class DataSeeder extends Seeder
      */
     public function run(): void
     {
-        /*
-        Data::create([
-            "group" => "",
-            "key" => "",
-            "value" => "",
-        ]);
-        */
+
         Data::create([
             "group" => "settings",
             "key" => "ctihc_logo",
@@ -152,6 +146,35 @@ class DataSeeder extends Seeder
             "group" => "contact_us",
             "key" => "facebook",
             "value" => "https://www.facebook.com/DeTexEgypt/",
+        ]);
+
+
+
+        Data::create([
+            "group" => "about_us",
+            "key" => "home_page_title_en",
+            "value" => "The Cotton, Spinning, Weaving, and Ready-Made Garments Holding Company",
+        ]);
+
+
+        Data::create([
+            "group" => "about_us",
+            "key" => "home_page_title_ar",
+            "value" => "شركة القطن والغزل والنسيج والملابس الجاهزة القابضة",
+        ]);
+
+
+        Data::create([
+            "group" => "about_us",
+            "key" => "home_page_description_en",
+            "value" => "The Cotton, Spinning, Weaving, and Ready-Made Garments Holding Company, under the Ministry of Public Business Sector, was established by Law No. 203 of 1991. It aims to boost investment in Egypt's cotton, textile, and garment manufacturing and export sectors.",
+        ]);
+
+
+        Data::create([
+            "group" => "about_us",
+            "key" => "home_page_description_ar",
+            "value" => "شركة القطن والغزل والنسيج والملابس الجاهزة القابضة، التابعة لوزارة قطاع الأعمال العام، تأسست بموجب القانون رقم 203 لسنة 1991. تهدف إلى تعزيز الاستثمار في قطاع القطن والمنسوجات وصناعة الملابس وتصديرها في مصر.",
         ]);
 
     }
