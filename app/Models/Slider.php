@@ -36,4 +36,7 @@ use Illuminate\Database\Eloquent\Model;
 class Slider extends Model
 {
     use HasFactory;
+
+    protected $table = "sliders";
+    protected $fillable = ['slug', 'image', 'link', 'is_parent'];
 }

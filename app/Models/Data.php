@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $group
@@ -33,5 +33,6 @@ class Data extends Model
 {
     use HasFactory;
 
+    protected $table = "data";
     protected $fillable = ['group', 'key', 'value'];
 }
