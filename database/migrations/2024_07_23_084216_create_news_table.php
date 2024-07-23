@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('image')->nullable();
             $table->string('slug', 400)->nullable();
+            $table->unsignedBigInteger('created_by');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->string('title', 400)->nullable();
             $table->text('description')->nullable();
             $table->text('body');
+            $table->unsignedBigInteger('created_by');
             $table->timestamps();
         });
     }

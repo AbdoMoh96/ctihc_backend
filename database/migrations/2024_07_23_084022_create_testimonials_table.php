@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('subject');
             $table->text('image')->nullable();
             $table->boolean('approved')->default(false);
+            $table->unsignedBigInteger('approved_by');
             $table->softDeletes();
             $table->timestamps();
         });

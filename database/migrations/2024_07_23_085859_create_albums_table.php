@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('image')->nullable();
             $table->boolean('is_parent')->default(0);
             $table->unsignedBigInteger('parent_id')->nullable();
+            $table->unsignedBigInteger('created_by');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->string('title', 400)->nullable();
             $table->text('description')->nullable();
             $table->string('btn_text', 400)->nullable();
+            $table->unsignedBigInteger('created_by');
             $table->timestamps();
         });
     }
