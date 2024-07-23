@@ -14,11 +14,3 @@ use App\Http\Controllers\Api\Admin\Auth\AuthController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-Route::post('/admin/login', [AuthController::class,'login']);
-
-Route::middleware('auth:admin')->post('/admin/logout', [AuthController::class,'logout']);
-
-Route::middleware('auth:admin')->get('/admin', function (Request $request) {
-    return $request->user();
-});

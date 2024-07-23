@@ -18,7 +18,7 @@ class AuthController extends Controller
         $this->authService = $authService;
     }
 
-    public function login(Request $request)
+    public function generateToken(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
@@ -33,7 +33,7 @@ class AuthController extends Controller
         return response()->json(['error' => 'Unauthorized'], 401);
     }
 
-    public function logout(Request $request)
+    public function revokeToken(Request $request)
     {
         $admin = $request->user(); // assuming the user is authenticated via Sanctum
 
