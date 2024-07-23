@@ -5,18 +5,13 @@ namespace App\Http\Controllers\Api\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Services\AuthService;
+use App\Services\Admin\AuthService;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    protected $authService;
-
-    public function __construct(AuthService $authService)
-    {
-        $this->authService = $authService;
-    }
+    public function __construct(private AuthService $authService){}
 
     public function generateToken(Request $request)
     {
