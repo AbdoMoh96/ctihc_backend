@@ -23,4 +23,17 @@ class DataController extends Controller
     $data = $this->dataService->getDataUsingGroup($request->input("group"));
     return response()->json($data, 200);
    }
+
+   public function updateDataValue(Request $request){
+    $request->validate([
+        "group" => "required",
+        "key" => "required",
+        "value" => "required"
+    ]);
+
+    $data = $this->dataService->updateDataValue($request);
+    return response()->json([
+        "message" => "value updated successfully!!"
+    ], 200);
+   }
 }

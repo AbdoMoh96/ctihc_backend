@@ -21,5 +21,14 @@ use FileHandler;
     return $formattedData;
    }
 
+   public function updateDataValue($data){
+   return Data::where([
+             'group' => $data->group,
+             'key' => $data->key,
+            ])->update([
+               'value' => $data->value
+            ]);
+   }
+
 
 }
