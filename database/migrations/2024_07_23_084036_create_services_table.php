@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->string('slug')->unique()->nullable();
             $table->text('image')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->softDeletes();

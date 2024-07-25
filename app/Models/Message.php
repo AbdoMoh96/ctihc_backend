@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $email
  * @property string|null $subject
  * @property string $massage
- * @property int $created_by
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at

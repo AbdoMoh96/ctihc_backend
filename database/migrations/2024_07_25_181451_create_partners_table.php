@@ -11,22 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('partners', function (Blueprint $table) {
             $table->id();
-            $table->text('image')->nullable();
             $table->string('slug')->unique()->nullable();
+            $table->text('image')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->softDeletes();
             $table->timestamps();
         });
 
-        Schema::create('news_lang', function (Blueprint $table) {
+        Schema::create('partners_lang', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('news_id');
+            $table->unsignedBigInteger('partner_id');
             $table->string('lang', 2);
             $table->string('title', 400)->nullable();
             $table->text('description')->nullable();
-            $table->text('body');
+            $table->string('btn_text', 400)->nullable();
             $table->unsignedBigInteger('created_by');
             $table->timestamps();
         });
@@ -37,7 +37,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
-        Schema::dropIfExists('news_lang');
+        Schema::dropIfExists('partners');
+        Schema::dropIfExists('partners_lang');
     }
 };

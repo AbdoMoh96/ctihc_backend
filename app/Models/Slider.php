@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Lang\SliderLang;
 
 /**
  * 
@@ -31,6 +32,13 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Slider whereParentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Slider whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Slider whereUpdatedAt($value)
+ * @property-read Slider|null $parent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, SliderLang> $slide_ar
+ * @property-read int|null $slide_ar_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, SliderLang> $slide_en
+ * @property-read int|null $slide_en_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Slider> $slides
+ * @property-read int|null $slides_count
  * @mixin \Eloquent
  */
 class Slider extends Model
@@ -39,4 +47,21 @@ class Slider extends Model
 
     protected $table = "sliders";
     protected $fillable = ['slug', 'image', 'link', 'is_parent'];
+
+    public function slides(){
+        return $this->hasMany(Slider::class,"parent_id","id");
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Slider::class, 'parent_id', 'id');
+    }
+
+    public function slide_en(){
+        return $this->hasMany(SliderLang::class,"slider_id", "id")->where('lang', 'en');
+    }
+
+    public function slide_ar(){
+        return $this->hasMany(SliderLang::class,"slider_id", "id")->where('lang', 'ar');
+    }
 }

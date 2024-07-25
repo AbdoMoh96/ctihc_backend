@@ -59,12 +59,24 @@ return new class extends Migration {
                 ->references('id')
                 ->on('languages');
         });
-        
+
         Schema::table('news_lang', function (Blueprint $table) {
             $table
                 ->foreign('news_id')
                 ->references('id')
                 ->on('news');
+
+                $table
+                ->foreign('lang')
+                ->references('id')
+                ->on('languages');
+        });
+
+        Schema::table('partners_lang', function (Blueprint $table) {
+            $table
+                ->foreign('partner_id')
+                ->references('id')
+                ->on('partners');
 
                 $table
                 ->foreign('lang')

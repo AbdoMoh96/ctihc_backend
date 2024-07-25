@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('email');
             $table->string('subject')->nullable();
             $table->text('massage');
-            $table->unsignedBigInteger('created_by');
             $table->softDeletes();
             $table->timestamps();
         });
