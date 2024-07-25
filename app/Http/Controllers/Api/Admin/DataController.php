@@ -14,4 +14,13 @@ class DataController extends Controller
        $data = $this->dataService->getDataGroups();
        return response()->json($data, 200);
    }
+
+   public function getData(Request $request){
+    $request->validate([
+        "group" => "required"
+    ]);
+
+    $data = $this->dataService->getDataUsingGroup($request->input("group"));
+    return response()->json($data, 200);
+   }
 }
