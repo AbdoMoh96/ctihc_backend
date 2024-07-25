@@ -8,5 +8,10 @@ use App\Services\Admin\DataService;
 
 class DataController extends Controller
 {
-   public function __construct (private DataService $service){}
+   public function __construct (private DataService $dataService){}
+
+   public function getDataGroups(){
+       $data = $this->dataService->getDataGroups();
+       return response()->json($data, 200);
+   }
 }
