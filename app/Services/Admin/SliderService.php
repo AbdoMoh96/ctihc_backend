@@ -4,6 +4,7 @@ namespace App\Services\Admin;
 use App\Models\Slider;
 use App\Models\Lang\SliderLang;
 use App\Traits\FileHandler;
+use Illuminate\Support\Facades\DB;
 
 class SliderService {
 use FileHandler;
@@ -13,21 +14,17 @@ use FileHandler;
   }
 
   public function getSlidesUsingParentSlug($parentSlug, $lang){
-    $parent = Slider::with(['slides' => function($query) use ($lang) {
-        $query->with("slide_$lang");
-    }])->where('slug', $parentSlug)->first();
-
-    if (!$parent) {
-        return collect();
-    }
-
-    $slides = $parent->slides->map(function($slide) use ($lang) {
-        $slide->data = $slide->{"slide_$lang"}[0];
-        unset($slide->{"slide_$lang"});
-        return $slide;
-    });
-
-    return $slides;
+    $data = DB::table('sliders as parent')
+    ->where([
+        'parent.slug' => $parentSlug,
+        'parent.is_parent' => true
+    ])
+    ->leftJoin('sliders as child', 'parent.id', '=', 'child.parent_id')
+    ->leftJoin('sliders_lang as lang', 'child.id', '=', 'lang.slider_id')
+    ->select('child.id','lang.lang', 'child.image', 'child.link', 'lang.title', 'lang.description', 'lang.btn_text')
+    ->where('lang.lang', $lang)
+    ->get();
+    return $data;
   }
 
   public function uploadSlideImage($data){}
