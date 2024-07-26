@@ -13,9 +13,20 @@ use FileHandler;
   }
 
   public function getSlidesUsingParentSlug($parentSlug, $lang){
-    $parent = Slider::where('slug', $parentSlug)->first();
-    $slides = Slider::where('parent_id', $parent->id)->get();
-    $slides->load("slide_$lang");
+    $parent = Slider::with(['slides' => function($query) use ($lang) {
+        $query->with("slide_$lang");
+    }])->where('slug', $parentSlug)->first();
+
+    if (!$parent) {
+        return collect();
+    }
+
+    $slides = $parent->slides->map(function($slide) use ($lang) {
+        $slide->data = $slide->{"slide_$lang"}[0];
+        unset($slide->{"slide_$lang"});
+        return $slide;
+    });
+
     return $slides;
   }
 
