@@ -21,13 +21,29 @@ use FileHandler;
     return $formattedData;
    }
 
+   public function createData($data){
+     $dataItem = new Data();
+     $dataItem->group = $data->group;
+     $dataItem->key = $data->key;
+     $dataItem->value = $data->value;
+     $dataItem->save();
+     return $dataItem;
+   }
+
    public function updateDataValue($data){
    return Data::where([
              'group' => $data->group,
              'key' => $data->key,
             ])->update([
                'value' => $data->value
-            ]);
+        ]);
+   }
+
+   public function dataItemDelete($data){
+    return Data::where([
+        'group' => $data->group,
+        'key' => $data->key,
+       ])->delete();
    }
 
 
