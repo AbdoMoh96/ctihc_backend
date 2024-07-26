@@ -15,4 +15,5 @@ Route::controller(DataController::class)->prefix('data')->name('data.')->group(f
 Route::controller(SliderController::class)->prefix('slider')->name('slider.')->group(function () {
     Route::post('/getParentSliders', 'getParentSliders')->name('get_parents');
     Route::post('/getSlidesUsingParentSlug', 'getSlidesUsingParentSlug')->name('get_slides');
+    Route::post('/uploadSlideImage', 'uploadSlideImage')->name('upload_image');
 });

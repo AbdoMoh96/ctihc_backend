@@ -28,7 +28,9 @@ use FileHandler;
     return $data;
   }
 
-  public function uploadSlideImage($data){}
+  public function uploadSlideImage($image){
+    return $this->fileUpload($image, 'slides');
+  }
 
   public function createParentSlider($data){}
 
