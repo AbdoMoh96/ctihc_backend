@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Admin\DataController;
+use App\Http\Controllers\Api\Admin\SliderController;
 
 Route::controller(DataController::class)->prefix('data')->name('data.')->group(function () {
     Route::post('/getDataGroups', 'getDataGroups')->name('get_groups');
@@ -8,4 +9,10 @@ Route::controller(DataController::class)->prefix('data')->name('data.')->group(f
     Route::post('/createData', 'createData')->name('create');
     Route::post('/updateDataValue', 'updateDataValue')->name('update_data_value');
     Route::post('/deleteData', 'deleteDataItem')->name('delete');
+});
+
+
+Route::controller(SliderController::class)->prefix('slider')->name('slider.')->group(function () {
+    Route::post('/getParentSliders', 'getParentSliders')->name('get_parents');
+    Route::post('/getSlidesUsingParentSlug', 'getSlidesUsingParentSlug')->name('get_slides');
 });
