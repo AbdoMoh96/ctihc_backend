@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Lang\SliderLang;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string|null $slug
@@ -43,7 +44,7 @@ use App\Models\Lang\SliderLang;
  */
 class Slider extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = "sliders";
     protected $fillable = ['slug', 'image', 'link', 'is_parent'];

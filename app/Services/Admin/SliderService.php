@@ -17,7 +17,8 @@ use FileHandler;
     $data = DB::table('sliders as parent')
     ->where([
         'parent.slug' => $parentSlug,
-        'parent.is_parent' => true
+        'parent.is_parent' => true,
+        'parent.deleted_at' => null
     ])
     ->leftJoin('sliders as child', 'parent.id', '=', 'child.parent_id')
     ->leftJoin('sliders_lang as lang', 'child.id', '=', 'lang.slider_id')

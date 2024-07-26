@@ -4,9 +4,10 @@ namespace App\Models\Lang;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * 
+ *
  *
  * @method static \Illuminate\Database\Eloquent\Builder|SliderLang newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SliderLang newQuery()
@@ -33,7 +34,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SliderLang extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = "sliders_lang";
 }
