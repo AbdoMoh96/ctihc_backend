@@ -25,6 +25,7 @@ use FileHandler;
     ->leftJoin('sliders_lang as lang', 'child.id', '=', 'lang.slider_id')
     ->select('child.id','lang.lang', 'child.image', 'child.link', 'lang.title', 'lang.description', 'lang.btn_text')
     ->where('lang.lang', $lang)
+    ->where("child.deleted_at", null)
     ->get();
     return $data;
   }
@@ -73,7 +74,7 @@ use FileHandler;
     $slide = Slider::where([
         'id' => $id,
         'is_parent' => false
-    ])->first();
+    ])->firstOrFail();
     $slide->load('slide_lang');
     return $slide;
   }
@@ -84,7 +85,6 @@ use FileHandler;
     $slide = Slider::findOrFail($data->id);
     $slide->image = $data->image;
     $slide->link = $data->link ?? null;
-    $slide->parent_id = $data->parent_id;
     $slide->update();
 
     foreach($supportedLanguages as $language){
