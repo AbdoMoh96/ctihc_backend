@@ -65,15 +65,61 @@ use FileHandler;
         ]);
     }
 
-    return $slide->load('slide_lang');
+    $slide->load('slide_lang');
+    return $slide;
+  }
+
+  public function getSlideById($id){
+    $slide = Slider::where([
+        'id' => $id,
+        'is_parent' => false
+    ])->first();
+    $slide->load('slide_lang');
+    return $slide;
+  }
+
+  public function updateSlide($data){
+    $supportedLanguages = config('app.locales');
+
+    $slide = Slider::findOrFail($data->id);
+    $slide->image = $data->image;
+    $slide->link = $data->link ?? null;
+    $slide->parent_id = $data->parent_id;
+    $slide->update();
+
+    foreach($supportedLanguages as $language){
+        SliderLang::where([
+            'slider_id' => $slide->id,
+            'lang' => $language,
+        ])->update([
+            'slider_id' => $slide->id,
+            'lang' => $language,
+            'title' => $data->{'title_'.$language},
+            'description' => $data->{'description_'.$language},
+            'created_by' => Auth()->guard('admin')->user()->id,
+            'btn_text' => $data->{'btn_text_'.$language},
+         ]);
+    }
+
+    $slide->load('slide_lang');
+    return $slide;
+}
+
+
+  public function deleteSlide($id){
+    $slide = Slider::where([
+        'id' => $id,
+        'is_parent' => false
+    ])->delete();
+    return $slide;
   }
 
 
-  public function updateSlide($data){}
-
-
-  public function deleteSlide($data){}
-
-
-  public function deleteParentSlider(){}
+  public function deleteParentSlider($id){
+    $slide = Slider::where([
+        'id' => $id,
+        'is_parent' => true
+    ])->delete();
+    return $slide;
+  }
 }

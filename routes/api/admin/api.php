@@ -18,4 +18,8 @@ Route::controller(SliderController::class)->prefix('slider')->name('slider.')->g
     Route::post('/uploadSlideImage', 'uploadSlideImage')->name('upload_image');
     Route::post('/createParentSlider', 'createParentSlider')->name('create.slider');
     Route::post('/createSlide', 'createSlide')->name('create.slide');
+    Route::post('/getSlideById', 'getSlideById')->name('slide.find');
+    Route::post('/updateSlide', 'updateSlide')->name('slide.update');
+    Route::post('/deleteSlide', 'deleteSlide')->name('slide.delete');
+    Route::post('/deleteParentSlider', 'deleteParentSlider')->name('slider.delete');
 });

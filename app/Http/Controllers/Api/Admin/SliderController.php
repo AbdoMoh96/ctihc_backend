@@ -58,4 +58,36 @@ class SliderController extends Controller
         $slide = $this->sliderService->createSlide($request);
         return response()->json($slide, 200);
     }
+
+    public function getSlideById(Request $request){
+        $request->validate([
+            "id"=> "required|integer",
+        ]);
+        $slide = $this->sliderService->getSlideById($request->input('id'));
+        return response()->json($slide, 200);
+    }
+
+    public function updateSlide(Request $request){
+        $request->validate([
+            "id"=> "required|integer",
+        ]);
+        $slide = $this->sliderService->updateSlide($request);
+        return response()->json($slide, 200);
+    }
+
+    public function deleteSlide(Request $request){
+        $request->validate([
+            "id"=> "required|integer",
+        ]);
+        $slide = $this->sliderService->deleteSlide($request->input('id'));
+        return response()->json($slide, 200);
+    }
+
+    public function deleteParentSlider(Request $request){
+        $request->validate([
+            "id"=> "required|integer",
+        ]);
+        $slider = $this->sliderService->deleteParentSlider($request->input('id'));
+        return response()->json($slider, 200);
+    }
 }
