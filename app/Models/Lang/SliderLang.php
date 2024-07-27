@@ -37,4 +37,6 @@ class SliderLang extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = "sliders_lang";
+
+    protected $fillable = ['slider_id', 'lang', 'title', 'description', 'btn_text', 'created_by'];
 }

@@ -58,6 +58,10 @@ class Slider extends Model
         return $this->belongsTo(Slider::class, 'parent_id', 'id');
     }
 
+    public function slide_lang(){
+        return $this->hasMany(SliderLang::class,"slider_id", "id");
+    }
+
     public function slide_en(){
         return $this->hasMany(SliderLang::class,"slider_id", "id")->where('lang', 'en');
     }

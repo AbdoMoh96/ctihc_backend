@@ -16,4 +16,6 @@ Route::controller(SliderController::class)->prefix('slider')->name('slider.')->g
     Route::post('/getParentSliders', 'getParentSliders')->name('get_parents');
     Route::post('/getSlidesUsingParentSlug', 'getSlidesUsingParentSlug')->name('get_slides');
     Route::post('/uploadSlideImage', 'uploadSlideImage')->name('upload_image');
+    Route::post('/createParentSlider', 'createParentSlider')->name('create.slider');
+    Route::post('/createSlide', 'createSlide')->name('create.slide');
 });

@@ -5,6 +5,7 @@ use App\Models\Slider;
 use App\Models\Lang\SliderLang;
 use App\Traits\FileHandler;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class SliderService {
 use FileHandler;
@@ -32,10 +33,40 @@ use FileHandler;
     return $this->fileUpload($image, 'slides');
   }
 
-  public function createParentSlider($data){}
+  public function createParentSlider($data){
+    $parent = new Slider();
+    $parent->slug = $data->slug;
+    $parent->is_parent = true;
+    $parent->created_by = Auth()->guard('admin')->user()->id;
+    $parent->save();
+    return $parent;
+  }
 
 
-  public function createSlide($data){}
+  public function createSlide($data){
+    $supportedLanguages = config('app.locales');
+
+    $slide = new Slider();
+    $slide->image = $data->image;
+    $slide->link =  $data->link ?? null;
+    $slide->is_parent = false;
+    $slide->created_by = Auth()->guard('admin')->user()->id;
+    $slide->parent_id = $data->parent_id;
+    $slide->save();
+
+    foreach($supportedLanguages as $language){
+        SliderLang::create([
+           'slider_id' => $slide->id,
+           'lang' => $language,
+           'title' => $data->{'title_'.$language},
+           'description' => $data->{'description_'.$language},
+           'created_by' => Auth()->guard('admin')->user()->id,
+           'btn_text' => $data->{'btn_text_'.$language},
+        ]);
+    }
+
+    return $slide->load('slide_lang');
+  }
 
 
   public function updateSlide($data){}

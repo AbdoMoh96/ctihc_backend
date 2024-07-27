@@ -31,6 +31,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('btn_text', 400)->nullable();
             $table->unsignedBigInteger('created_by');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
