@@ -80,7 +80,7 @@ class SliderController extends Controller
             "id"=> "required|integer",
         ]);
         $slide = $this->sliderService->deleteSlide($request->input('id'));
-        return response()->json("slide delete successfully!!", 200);
+        return response()->json("slide deleted successfully!!", 200);
     }
 
     public function deleteParentSlider(Request $request){
@@ -88,6 +88,6 @@ class SliderController extends Controller
             "id"=> "required|integer",
         ]);
         $slider = $this->sliderService->deleteParentSlider($request->input('id'));
-        return response()->json($slider, 200);
+        return response()->json("parent slider deleted successfully!!", 200);
     }
 }
