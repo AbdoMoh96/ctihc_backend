@@ -18,7 +18,7 @@ class NewsController extends Controller
     }
 
     $lang = $request->headers->get("Accept-Language");
-    $news = $this->newsService->getAllNews($lang);
+    $news = $this->newsService->getAllNews($lang, $request->input('page'));
     return response()->json($news, 200);
   }
 

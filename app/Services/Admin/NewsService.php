@@ -12,14 +12,18 @@ class NewsService {
 use FileHandler;
 
 
- public function getAllNews($lang){
+ public function getAllNews($lang, $page){
     $news = DB::table('news as n')
     ->leftJoin('news_lang as nl', 'n.id', '=', 'nl.news_id')
     ->where('nl.lang', $lang)
     ->where('n.deleted_at', null)
-    ->select('n.id','n.slug','n.thumbnail','nl.title','nl.description','nl.body')
-    ->get();
-    return $news;
+    ->select('n.id','n.slug','n.thumbnail','nl.title','nl.description','nl.body');
+
+    if($page){
+        return $news->paginate(8, $page);
+    }
+
+    return $news->get();
  }
 
  public function getNewsItem($id, $lang){
