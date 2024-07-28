@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Admin\DataController;
 use App\Http\Controllers\Api\Admin\SliderController;
+use App\Http\Controllers\Api\Admin\NewsController;
 
 Route::controller(DataController::class)->prefix('data')->name('data.')->group(function () {
     Route::post('/getDataGroups', 'getDataGroups')->name('get_groups');
@@ -22,4 +23,10 @@ Route::controller(SliderController::class)->prefix('slider')->name('slider.')->g
     Route::post('/updateSlide', 'updateSlide')->name('slide.update');
     Route::post('/deleteSlide', 'deleteSlide')->name('slide.delete');
     Route::post('/deleteParentSlider', 'deleteParentSlider')->name('slider.delete');
+});
+
+Route::controller(NewsController::class)->prefix('news')->name('news.')->group(function () {
+    Route::post('/getAllNews', 'getAllNews')->name('all');
+    Route::post('/getNewsItem', 'getNewsItem')->name('get_item');
+    Route::post('/getNewsItemBySlug', 'getNewsItemBySlug')->name('get_item_slug');
 });

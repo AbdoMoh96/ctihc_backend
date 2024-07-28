@@ -35,4 +35,18 @@ class NewsController extends Controller
     $news = $this->newsService->getNewsItem($request->input('id'),$lang);
     return response()->json($news, 200);
   }
+
+  public function getNewsItemBySlug(Request $request){
+    $request->validate([
+        "slug"=> "required",
+    ]);
+
+    if(!isLanguageSupported($request->header('Accept-Language'))){
+        return response()->json("Language Not supported", 400);
+    }
+
+    $lang = $request->headers->get("Accept-Language");
+    $news = $this->newsService->getNewsItemBySlug($request->input('slug'),$lang);
+    return response()->json($news, 200);
+  }
 }

@@ -14,19 +14,32 @@ use FileHandler;
 
  public function getAllNews($lang){
     $news = DB::table('news as n')
-    ->leftJoin('news_lang as nl', 'n.id', '=', 'nl.id')
-    ->where('lang', $lang)
-    ->where('deleted_at', null)
+    ->leftJoin('news_lang as nl', 'n.id', '=', 'nl.news_id')
+    ->where('nl.lang', $lang)
+    ->where('n.deleted_at', null)
+    ->select('n.id','n.slug','n.thumbnail','nl.title','nl.description','nl.body')
     ->get();
     return $news;
  }
 
  public function getNewsItem($id, $lang){
    $news = DB::table('news as n')
-   ->leftJoin('news_lang as nl', 'n.id', '=', 'nl.id')
+   ->leftJoin('news_lang as nl', 'n.id', '=', 'nl.news_id')
    ->where('nl.lang', $lang)
    ->where('n.id', $id)
    ->where('deleted_at', null)
+   ->select('n.id','n.slug','n.thumbnail','nl.title','nl.description','nl.body')
+   ->first();
+   return $news;
+ }
+
+ public function getNewsItemBySlug($slug, $lang){
+    $news = DB::table('news as n')
+   ->leftJoin('news_lang as nl', 'n.id', '=', 'nl.news_id')
+   ->where('nl.lang', $lang)
+   ->where('n.slug', $slug)
+   ->where('deleted_at', null)
+   ->select('n.id','n.slug','n.thumbnail','nl.title','nl.description','nl.body')
    ->first();
    return $news;
  }
