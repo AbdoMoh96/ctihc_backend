@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->text('image')->nullable();
+            $table->text('thumbnail')->nullable();
             $table->string('slug')->unique()->nullable();
             $table->unsignedBigInteger('created_by');
             $table->softDeletes();

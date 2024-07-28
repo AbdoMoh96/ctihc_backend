@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Lang\NewsLang;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * 
+ *
  *
  * @property int $id
- * @property string|null $image
+ * @property string|null $thumbnail
  * @property string|null $slug
  * @property int $created_by
  * @property string|null $deleted_at
@@ -35,8 +36,12 @@ use App\Models\Lang\NewsLang;
  */
 class News extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table = "news";
+
+    public function news_lang(){
+        return $this->hasMany(NewsLang::class,"news_id", "id");
+    }
 
     public function news_en(){
         return $this->hasMany(NewsLang::class,"news_id", "id")->where('lang', 'en');

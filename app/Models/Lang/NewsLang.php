@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * 
+ *
  *
  * @method static \Illuminate\Database\Eloquent\Builder|NewsLang newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|NewsLang newQuery()
@@ -36,4 +36,6 @@ class NewsLang extends Model
     use HasFactory;
 
     protected $table = "news_lang";
+
+    protected $fillable = ['news_id', 'lang', 'title', 'description', 'body', 'created_by'];
 }
