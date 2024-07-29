@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * 
+ *
  *
  * @method static \Illuminate\Database\Eloquent\Builder|PartnersLang newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PartnersLang newQuery()
@@ -31,7 +31,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|PartnersLang whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class PartnersLang extends Model
+class PartnerLang extends Model
 {
     use HasFactory;
 

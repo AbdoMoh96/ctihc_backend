@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Lang\PartnersLang;
+use App\Models\Lang\PartnerLang;
 
 /**
  *
@@ -28,18 +28,18 @@ use App\Models\Lang\PartnersLang;
  * @method static \Illuminate\Database\Eloquent\Builder|Partners whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Partners extends Model
+class Partner extends Model
 {
     use HasFactory;
 
     protected $table = 'partners';
 
     public function partner_en(){
-        return $this->hasMany(PartnersLang::class,"partner_id", "id")->where('lang', 'en');
+        return $this->hasMany(PartnerLang::class,"partner_id", "id")->where('lang', 'en');
     }
 
     public function partner_ar(){
-        return $this->hasMany(PartnersLang::class,"partner_id", "id")->where('lang', 'ar');
+        return $this->hasMany(PartnerLang::class,"partner_id", "id")->where('lang', 'ar');
     }
 
     public function createdBy() {
