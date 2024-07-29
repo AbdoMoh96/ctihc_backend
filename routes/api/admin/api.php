@@ -29,4 +29,8 @@ Route::controller(NewsController::class)->prefix('news')->name('news.')->group(f
     Route::post('/getAllNews', 'getAllNews')->name('all');
     Route::post('/getNewsItem', 'getNewsItem')->name('get_item');
     Route::post('/getNewsItemBySlug', 'getNewsItemBySlug')->name('get_item_slug');
+    Route::post('/uploadNewsThumbnail', 'uploadNewsThumbnail')->name('thumbnail_upload');
+    Route::post('/createNewsItem', 'createNewsItem')->name('create');
+    Route::post('/updateNewsItem', 'updateNewsItem')->name('update');
+    Route::post('/deleteNewsItem', 'deleteNewsItem')->name('delete');
 });

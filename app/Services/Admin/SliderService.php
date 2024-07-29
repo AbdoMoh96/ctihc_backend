@@ -83,7 +83,7 @@ use FileHandler;
     $supportedLanguages = config('app.locales');
 
     $slide = Slider::findOrFail($data->id);
-    $slide->image = $data->image;
+    if($slide->image) $slide->image = $data->image;
     $slide->link = $data->link ?? null;
     $slide->update();
 

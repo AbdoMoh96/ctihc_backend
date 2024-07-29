@@ -63,8 +63,8 @@ use FileHandler;
    return $news;
  }
 
- public function uploadNewsThumbnail($image){
-    return $this->fileUpload($image, 'news');
+ public function uploadNewsThumbnail($thumbnail){
+    return $this->fileUpload($thumbnail, 'news');
  }
 
 
@@ -96,7 +96,7 @@ use FileHandler;
     $supportedLanguages = config('app.locales');
 
     $news = News::find($data->id);
-    $news->thumbnail = $data->thumbnail;
+    if($data->thumbnail) $news->thumbnail = $data->thumbnail;
     $news->slug = Str::slug($data->title_en, '-');
     $news->created_by = Auth()->guard()->user()->id;
     $news->update();

@@ -49,4 +49,49 @@ class NewsController extends Controller
     $news = $this->newsService->getNewsItemBySlug($request->input('slug'),$lang);
     return response()->json($news, 200);
   }
+
+  public function uploadNewsThumbnail(Request $request){
+    $request->validate([
+        "thumbnail"=> "required|mimes:jpg,png|max:5120",
+    ]);
+
+    $thumbnail = $this->newsService->uploadNewsThumbnail($request->file('thumbnail'));
+    return response()->json($thumbnail, 200);
+  }
+
+  public function createNewsItem(Request $request){
+    $request->validate([
+        "thumbnail"=> "required",
+        "title_en"=> "required",
+        "title_ar"=> "required",
+        "description_en"=> "required",
+        "description_ar"=> "required",
+        "body_en"=> "required",
+        "body_ar"=> "required",
+    ]);
+    $news = $this->newsService->createNewsItem($request);
+    return response()->json($news, 200);
+  }
+
+  public function updateNewsItem(Request $request){
+    $request->validate([
+        "id" => "required",
+        "title_en"=> "required",
+        "title_ar"=> "required",
+        "description_en"=> "required",
+        "description_ar"=> "required",
+        "body_en"=> "required",
+        "body_ar"=> "required",
+    ]);
+    $news = $this->newsService->updateNewsItem($request);
+    return response()->json($news, 200);
+  }
+
+  public function deleteNewsItem(Request $request){
+    $request->validate([
+        "id" => "required",
+    ]);
+    $news = $this->newsService->deleteNewsItem($request->input('id'));
+    return response()->json($news, 200);
+  }
 }
