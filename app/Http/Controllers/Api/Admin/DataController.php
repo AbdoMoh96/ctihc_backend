@@ -27,7 +27,13 @@ class DataController extends Controller
         "group" => "required"
     ]);
 
-    $data = $this->dataService->getDataUsingGroup($request->input("group"));
+    $lang = $request->headers->get("Accept-Language");
+
+    if(!isLanguageSupported($lang)){
+        return response()->json("Language Not supported", 400);
+    }
+
+    $data = $this->dataService->getDataUsingGroup($request->input("group"), $lang);
 
     if(!$data){
         return response()->json([
@@ -41,6 +47,7 @@ class DataController extends Controller
    public function createData(Request $request){
     $request->validate([
         "group" => "required",
+        "lang" => "present|nullable",
         "key" => "required",
         "value" => "required"
     ]);
@@ -61,6 +68,7 @@ class DataController extends Controller
    public function updateDataValue(Request $request){
     $request->validate([
         "group" => "required",
+        "lang" => "present|nullable",
         "key" => "required",
         "value" => "required"
     ]);
@@ -81,6 +89,7 @@ class DataController extends Controller
    public function deleteDataItem(Request $request){
     $request->validate([
         "group" => "required",
+        "lang" => "present|nullable",
         "key" => "required"
     ]);
 
