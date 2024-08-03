@@ -10,6 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
+
+        Schema::table('data', function (Blueprint $table) {
+            $table
+                ->foreign('lang')
+                ->references('id')
+                ->on('languages');
+        });
+
         Schema::table('sliders', function (Blueprint $table) {
             $table
                 ->foreign('parent_id')

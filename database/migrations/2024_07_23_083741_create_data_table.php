@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('data', function (Blueprint $table) {
             $table->id();
             $table->string('group', 400);
+            $table->string('lang', 2)->nullable();
             $table->string('key', 400);
             $table->text('value');
             $table->softDeletes();

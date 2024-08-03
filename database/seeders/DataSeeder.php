@@ -28,51 +28,59 @@ class DataSeeder extends Seeder
 
         Data::create([
             "group" => "settings",
-            "key" => "ctihc_logo_text_en",
+            "lang" => "en",
+            "key" => "ctihc_logo_text",
             "value" => "Cotton & Textile Industries Holding",
         ]);
 
 
         Data::create([
             "group" => "settings",
-            "key" => "ctihc_logo_text_ar",
+            "lang" => "ar",
+            "key" => "ctihc_logo_text",
             "value" => "الشركة القابضة للقطن والنسيج",
         ]);
 
 
         Data::create([
             "group" => "settings",
-            "key" => "ctihc_second_logo_text_en",
+            "lang" => "en",
+            "key" => "ctihc_second_logo_text",
             "value" => "Ministry Of Public Business Sector",
         ]);
 
         Data::create([
             "group" => "settings",
-            "key" => "ctihc_second_logo_text_ar",
+            "lang" => "ar",
+            "key" => "ctihc_second_logo_text",
             "value" => "وزارة قطاع الأعمال العام",
         ]);
 
         Data::create([
             "group" => "settings",
-            "key" => "copyright_title_en",
+            "lang" => "en",
+            "key" => "copyright_title",
             "value" => "Privacy Policy and Disclaimer",
         ]);
 
         Data::create([
             "group" => "settings",
-            "key" => "copyright_title_ar",
+            "lang" => "ar",
+            "key" => "copyright_title",
             "value" => "سياسة الخصوصية وإخلاء المسؤولية",
         ]);
 
         Data::create([
             "group" => "settings",
-            "key" => "copyright_description_en",
+            "lang" => "en",
+            "key" => "copyright_description",
             "value" => "© Holding Company for Cotton and Textiles (CTIHC) - 2024",
         ]);
 
         Data::create([
             "group" => "settings",
-            "key" => "copyright_description_ar",
+            "lang" => "ar",
+            "key" => "copyright_description",
             "value" => "© الشركة القابضة للقطن والمنسوجات (CTIHC) - 2024",
         ]);
 
@@ -114,13 +122,15 @@ class DataSeeder extends Seeder
 
         Data::create([
             "group" => "contact_us",
-            "key" => "address_en",
+            "lang" => "en",
+            "key" => "address",
             "value" => "8 El-Sayed Mohammed Taher",
         ]);
 
         Data::create([
             "group" => "contact_us",
-            "key" => "address_ar",
+            "lang" => "ar",
+            "key" => "address",
             "value" => "8 السيد محمد طاهر",
         ]);
 
@@ -152,28 +162,32 @@ class DataSeeder extends Seeder
 
         Data::create([
             "group" => "about_us",
-            "key" => "home_page_title_en",
+            "lang" => "en",
+            "key" => "home_page_title",
             "value" => "The Cotton, Spinning, Weaving, and Ready-Made Garments Holding Company",
         ]);
 
 
         Data::create([
             "group" => "about_us",
-            "key" => "home_page_title_ar",
+            "lang" => "ar",
+            "key" => "home_page_title",
             "value" => "شركة القطن والغزل والنسيج والملابس الجاهزة القابضة",
         ]);
 
 
         Data::create([
             "group" => "about_us",
-            "key" => "home_page_description_en",
+            "lang" => "en",
+            "key" => "home_page_description",
             "value" => "The Cotton, Spinning, Weaving, and Ready-Made Garments Holding Company, under the Ministry of Public Business Sector, was established by Law No. 203 of 1991. It aims to boost investment in Egypt's cotton, textile, and garment manufacturing and export sectors.",
         ]);
 
 
         Data::create([
             "group" => "about_us",
-            "key" => "home_page_description_ar",
+            "lang" => "ar",
+            "key" => "home_page_description",
             "value" => "شركة القطن والغزل والنسيج والملابس الجاهزة القابضة، التابعة لوزارة قطاع الأعمال العام، تأسست بموجب القانون رقم 203 لسنة 1991. تهدف إلى تعزيز الاستثمار في قطاع القطن والمنسوجات وصناعة الملابس وتصديرها في مصر.",
         ]);
 

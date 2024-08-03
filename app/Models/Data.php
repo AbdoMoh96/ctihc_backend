@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property int $id
  * @property string $group
+ * @property string $lang
  * @property string $key
  * @property string $value
  * @property int $created_by
@@ -35,5 +36,5 @@ class Data extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = "data";
-    protected $fillable = ['group', 'key', 'value'];
+    protected $fillable = ['group','lang', 'key', 'value'];
 }
