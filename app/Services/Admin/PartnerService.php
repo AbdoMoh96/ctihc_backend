@@ -5,6 +5,7 @@ use App\Traits\FileHandler;
 use App\Models\Partner;
 use App\Models\Lang\PartnerLang;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PartnerService
 {
@@ -58,5 +59,63 @@ class PartnerService
    ->select('p.id','p.slug','p.image','pl.title','pl.description')
    ->first();
    return $news;
+ }
+
+ public function createPartner($data){
+    $supportedLanguages = config('app.locales');
+
+    $partner = new Partner();
+    $partner->slug = Str::slug($data->title_en, '-');
+    $partner->image = $data->image;
+    $partner->created_by = Auth()->guard('admin')->user()->id;
+    $partner->save();
+
+    foreach($supportedLanguages as $language){
+        PartnerLang::create([
+           'partner_id' => $partner->id,
+           'lang' => $language,
+           'title' => $data->{'title_'.$language},
+           'description' => $data->{'description_'.$language},
+           'btn_text' => $data->{'btn_text_'.$language},
+           'created_by' => Auth()->guard('admin')->user()->id,
+        ]);
+    }
+
+    $partner->load('partner_lang');
+    return $partner;
+ }
+
+ public function updatePartner($data){
+    $supportedLanguages = config('app.locales');
+
+    $partner = Partner::findOrFail($data->id);
+    $partner->slug = Str::slug($data->title_en, '-');
+    if($partner->image) $partner->image = $data->image;
+    $partner->created_by = Auth()->guard('admin')->user()->id;
+    $partner->update();
+
+    foreach($supportedLanguages as $language){
+        PartnerLang::where([
+           'partner_id' => $partner->id,
+           'lang' => $language,
+        ])->update([
+            'partner_id' => $partner->id,
+            'lang' => $language,
+            'title' => $data->{'title_'.$language},
+            'description' => $data->{'description_'.$language},
+            'btn_text' => $data->{'btn_text_'.$language},
+            'created_by' => Auth()->guard('admin')->user()->id,
+         ]);
+    }
+
+    $partner->load('partner_lang');
+    return $partner;
+
+ }
+
+ public function deletePartner($id){
+    $partner = Partner::findOrFail($id);
+    $partner->delete();
+    return $partner;
  }
 }

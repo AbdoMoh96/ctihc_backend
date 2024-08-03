@@ -36,4 +36,6 @@ class PartnerLang extends Model
     use HasFactory;
 
     protected $table = 'partners_lang';
+
+    protected $fillable = ['partner_id', 'lang', 'title', 'description', 'btn_text', 'created_by'];
 }

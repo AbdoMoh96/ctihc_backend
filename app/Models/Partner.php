@@ -34,6 +34,10 @@ class Partner extends Model
 
     protected $table = 'partners';
 
+    public function partner_lang(){
+        return $this->hasMany(PartnerLang::class,"partner_id", "id");
+    }
+
     public function partner_en(){
         return $this->hasMany(PartnerLang::class,"partner_id", "id")->where('lang', 'en');
     }
