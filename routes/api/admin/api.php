@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Admin\DataController;
 use App\Http\Controllers\Api\Admin\SliderController;
 use App\Http\Controllers\Api\Admin\NewsController;
 use App\Http\Controllers\Api\Admin\PartnerController;
+use App\Http\Controllers\Api\Admin\DocumentController;
 
 Route::controller(DataController::class)->prefix('data')->name('data.')->group(function () {
     Route::post('/getDataGroups', 'getDataGroups')->name('get_groups');
@@ -46,3 +47,13 @@ Route::controller(PartnerController::class)->prefix('partners')->name('partners.
     Route::post('/updatePartner', 'updatePartner')->name('update');
     Route::post('/deletePartner', 'deletePartner')->name('delete');
 });
+
+Route::controller(DocumentController::class)->prefix('documents')->name('documents.')->group(function () {
+    Route::post('/getAllDocuments', 'getAllDocuments')->name('all');
+    Route::post('/getDocument', 'getDocument')->name('get_item');
+    Route::post('/uploadDocumentFile', 'uploadDocumentFile')->name('file_upload');
+    Route::post('/createDocument', 'createDocument')->name('create');
+    Route::post('/updateDocument', 'updateDocument')->name('update');
+    Route::post('/deleteDocument', 'deleteDocument')->name('delete');
+});
+
