@@ -91,6 +91,17 @@ return new class extends Migration {
                 ->references('id')
                 ->on('languages');
         });
+
+        Schema::table('documents_lang', function (Blueprint $table) {
+            $table->foreign('document_id')
+            ->references('id')
+            ->on('documents');
+
+            $table
+                ->foreign('lang')
+                ->references('id')
+                ->on('languages');
+        });
     }
 
     /**

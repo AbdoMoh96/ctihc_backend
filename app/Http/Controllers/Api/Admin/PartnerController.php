@@ -11,4 +11,5 @@ class PartnerController extends Controller
     public function __construct(private PartnerService $partnerService){}
 
     
+
 }
