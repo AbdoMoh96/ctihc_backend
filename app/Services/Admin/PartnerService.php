@@ -41,7 +41,7 @@ class PartnerService
 
  public function getPartner($id, $lang){
    $partner = DB::table('partners as p')
-   ->leftJoin('partners_lang as pl', 'p.id', '=', 'pl.news_id')
+   ->leftJoin('partners_lang as pl', 'p.id', '=', 'pl.partner_id')
    ->where('pl.lang', $lang)
    ->where('p.id', $id)
    ->where('deleted_at', null)
@@ -52,7 +52,7 @@ class PartnerService
 
  public function getPartnerBySlug($slug, $lang){
     $news = DB::table('partners as p')
-   ->leftJoin('partners_lang as pl', 'p.id', '=', 'pl.news_id')
+   ->leftJoin('partners_lang as pl', 'p.id', '=', 'pl.partner_id')
    ->where('pl.lang', $lang)
    ->where('p.slug', $slug)
    ->where('deleted_at', null)
@@ -94,7 +94,7 @@ class PartnerService
 
     $partner = Partner::findOrFail($data->id);
     $partner->slug = Str::slug($data->title_en, '-');
-    if($partner->image) $partner->image = $data->image;
+    if($data->image) $partner->image = $data->image;
     $partner->created_by = Auth()->guard('admin')->user()->id;
     $partner->update();
 

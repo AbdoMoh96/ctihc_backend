@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Lang\PartnerLang;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  *
@@ -30,7 +31,7 @@ use App\Models\Lang\PartnerLang;
  */
 class Partner extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'partners';
 

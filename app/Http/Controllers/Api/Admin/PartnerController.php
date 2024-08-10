@@ -68,8 +68,6 @@ class PartnerController extends Controller
             "title_ar"=> "required",
             "description_en"=> "required",
             "description_ar"=> "required",
-            "body_en"=> "required",
-            "body_ar"=> "required",
             "btn_text_en" => "present|nullable",
             "btn_text_ar" => "present|nullable",
         ]);
@@ -85,8 +83,6 @@ class PartnerController extends Controller
             "title_ar"=> "required",
             "description_en"=> "required",
             "description_ar"=> "required",
-            "body_en"=> "required",
-            "body_ar"=> "required",
             "btn_text_en" => "present|nullable",
             "btn_text_ar" => "present|nullable",
         ]);
