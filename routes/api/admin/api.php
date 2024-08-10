@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Admin\DataController;
 use App\Http\Controllers\Api\Admin\SliderController;
 use App\Http\Controllers\Api\Admin\NewsController;
+use App\Http\Controllers\Api\Admin\PartnerController;
 
 Route::controller(DataController::class)->prefix('data')->name('data.')->group(function () {
     Route::post('/getDataGroups', 'getDataGroups')->name('get_groups');
@@ -33,4 +34,15 @@ Route::controller(NewsController::class)->prefix('news')->name('news.')->group(f
     Route::post('/createNewsItem', 'createNewsItem')->name('create');
     Route::post('/updateNewsItem', 'updateNewsItem')->name('update');
     Route::post('/deleteNewsItem', 'deleteNewsItem')->name('delete');
+});
+
+
+Route::controller(PartnerController::class)->prefix('partners')->name('partners.')->group(function () {
+    Route::post('/getAllPartners', 'getAllPartners')->name('all');
+    Route::post('/getPartner', 'getPartner')->name('get_item');
+    Route::post('/getPartnerBySlug', 'getPartnerBySlug')->name('get_item_slug');
+    Route::post('/uploadPartnerImage', 'uploadPartnerImage')->name('image_upload');
+    Route::post('/createPartner', 'createPartner')->name('create');
+    Route::post('/updatePartner', 'updatePartner')->name('update');
+    Route::post('/deletePartner', 'deletePartner')->name('delete');
 });
