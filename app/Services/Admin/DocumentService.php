@@ -16,7 +16,7 @@ use FileHandler;
     ->where('dl.lang', $lang)
     ->where('d.deleted_at', null)
     ->select('d.id','d.document_path', 'dl.title','dl.description')
-    ->orderBy('n.id', $data->order ?? 'desc');
+    ->orderBy('d.id', $data->order ?? 'desc');
 
     if($data->filter){
         $documents->whereAny(
@@ -59,7 +59,7 @@ use FileHandler;
     $supportedLanguages = config('app.locales');
 
     $document = new Document();
-    $document->document_path = $data->file;
+    $document->document_path = $data->document_path;
     $document->created_by = Auth()->guard()->user()->id;
     $document->save();
 
@@ -68,8 +68,7 @@ use FileHandler;
             'document_id' => $document->id,
             'lang' => $language,
             'title' => $data->{'title_'.$language},
-            'description' => $data->{'description_'.$language},
-            'created_by' => Auth()->guard()->user()->id
+            'description' => $data->{'description_'.$language}
         ]);
     }
 
@@ -92,8 +91,7 @@ use FileHandler;
         ])->update([
             'lang' => $language,
             'title' => $data->{'title_'.$language},
-            'description' => $data->{'description_'.$language},
-            'created_by' => Auth()->guard()->user()->id
+            'description' => $data->{'description_'.$language}
         ]);
     }
 
