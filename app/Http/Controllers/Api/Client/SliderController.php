@@ -10,6 +10,12 @@ class SliderController extends Controller
 {
     public function __construct(private SliderService $sliderService){}
 
+
+    public function getParentSliders(){
+        $sliders = $this->sliderService->getParentSliders();
+        return response()->json($sliders, 200);
+    }
+
     public function getSlidesUsingParentSlug(Request $request){
         $request->validate([
             "slug"=> "required",
