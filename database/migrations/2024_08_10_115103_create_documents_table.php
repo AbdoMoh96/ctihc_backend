@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('document_path');
             $table->softDeletes();
+            $table->unsignedBigInteger('created_by');
             $table->timestamps();
         });
 
