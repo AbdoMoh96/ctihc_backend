@@ -61,6 +61,10 @@ class PartnerService
    return $news;
  }
 
+ public function uploadPartnerImage($thumbnail){
+    return $this->fileUpload($thumbnail, 'partners');
+ }
+
  public function createPartner($data){
     $supportedLanguages = config('app.locales');
 
