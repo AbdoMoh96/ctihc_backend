@@ -5,13 +5,21 @@ use App\Models\Data;
 
 class DataService {
 
-    public function getDataUsingGroup($group){
-        $data = Data::where('group', $group)->get();
+   public function getDataGroups(){
+     return Data::distinct()->select('group')->get()->pluck('group');
+   }
 
-        $formattedData = $data->mapWithKeys(function ($dataItem) {
-            return [$dataItem->key => $dataItem->value];
-        });
+   public function getDataUsingGroup($group, $lang){
+    $data = Data::where('group', $group)
+    ->where('lang', $lang)
+    ->orWhere('lang', null)
+    ->get();
 
-        return $formattedData;
-       }
+    $formattedData = $data->mapWithKeys(function ($dataItem) {
+        return [$dataItem->key => $dataItem->value];
+    });
+
+    return $formattedData;
+   }
+
 }
