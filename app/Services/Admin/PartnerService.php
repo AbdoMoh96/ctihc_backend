@@ -22,7 +22,8 @@ class PartnerService
     if($data->filter){
         $partners->whereAny(
             [
-                'nl.title'
+                'pl.title',
+                'pl.description'
             ],
             'LIKE',
             "%$data->filter%");
