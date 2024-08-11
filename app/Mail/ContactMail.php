@@ -28,6 +28,7 @@ class ContactMail extends Mailable
     {
         return new Envelope(
             subject: $this->message->subject,
+            from: $this->message->email,
         );
     }
 
