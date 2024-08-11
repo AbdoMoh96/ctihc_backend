@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Client\SliderController;
 use App\Http\Controllers\Api\Client\NewsController;
 use App\Http\Controllers\Api\Client\PartnerController;
 use App\Http\Controllers\Api\Client\DocumentController;
+use App\Http\Controllers\Api\Client\MessageController;
 
 Route::controller(DataController::class)->prefix('data')->name('data.')->group(function () {
     Route::post('/getDataGroups', 'getDataGroups')->name('get_groups');
@@ -33,4 +34,8 @@ Route::controller(PartnerController::class)->prefix('partners')->name('partners.
 Route::controller(DocumentController::class)->prefix('documents')->name('documents.')->group(function () {
     Route::post('/getAllDocuments', 'getAllDocuments')->name('all');
     Route::post('/getDocument', 'getDocument')->name('get_item');
+});
+
+Route::controller(MessageController::class)->prefix('messages')->name('messages.')->group(function () {
+    Route::post('/store', 'storeClientMessage')->name('store');
 });

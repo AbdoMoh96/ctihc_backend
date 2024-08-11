@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $email
  * @property string|null $subject
  * @property string|null $mobile
- * @property string $message
+ * @property string|null $body
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
