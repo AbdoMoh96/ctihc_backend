@@ -13,11 +13,12 @@ jobs:
             ssh $SSH_USER@$SSH_HOST "cd $PROJECT_PATH && git pull && docker compose down && docker compose up --build -d"
 
 workflows:
-  jobs:
-    - build
-    - deploy:
-        requires:
-          - build # only deploy once build job has completed
-        filters:
-          branches:
-            only: main # only deploy on the main branch
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build # only deploy once build job has completed
+          filters:
+            branches:
+              only: main # only deploy on the main branch
