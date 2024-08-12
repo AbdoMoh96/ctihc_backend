@@ -5,6 +5,9 @@ jobs:
     machine:
       image: ubuntu-2204:2023.07.2
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:WpSENHS8plY2GAAowwL3BNDYnU8K6TU5f/SAwJ0ZLt8"
       - run:
           name: Deploy Over SSH
           command: |
