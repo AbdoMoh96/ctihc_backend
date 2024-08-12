@@ -10,6 +10,7 @@ jobs:
       - run:
           name: Deploy with Docker Compose
           command: |
+<<<<<<< 2125e27e77c0c3ca7303732b896fd41b8df9b006
             ssh $SSH_USER@$SSH_HOST "cd $PATH && git pull && docker compose down && docker compose up --build -d"
 
 workflows:
@@ -22,3 +23,16 @@ workflows:
           filters:
             branches:
               only: main # only deploy on the main branch
+=======
+            ssh $SSH_USER@$SSH_HOST "cd $PROJECT_PATH && git pull && docker compose down && docker compose up --build -d"
+
+workflows:
+  jobs:
+    - build
+    - deploy:
+        requires:
+          - build # only deploy once build job has completed
+        filters:
+          branches:
+            only: main # only deploy on the main branch
+>>>>>>> test circleci update 2
