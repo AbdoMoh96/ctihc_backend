@@ -10,7 +10,7 @@ jobs:
       - run:
           name: Deploy with Docker Compose
           command: |
-            ssh $SSH_USER@$SSH_HOST "docker compose down && docker compose up --build -d"
+            ssh $SSH_USER@$SSH_HOST "cd $PATH && git pull && docker compose down && docker compose up --build -d"
 
 workflows:
   build-and-deploy:
