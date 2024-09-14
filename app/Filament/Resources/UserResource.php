@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DataResource\Pages;
-use App\Filament\Resources\DataResource\RelationManagers;
-use App\Models\Data;
+use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\UserResource\RelationManagers;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class DataResource extends Resource
+class UserResource extends Resource
 {
-    protected static ?string $model = Data::class;
+    protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,18 +23,18 @@ class DataResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('lang')
-                    ->maxLength(2),
-                Forms\Components\TextInput::make('group')
+                Forms\Components\TextInput::make('name')
                     ->required()
-                    ->maxLength(400),
-                Forms\Components\TextInput::make('key')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('email')
+                    ->email()
                     ->required()
-                    ->maxLength(400),
-                Forms\Components\Textarea::make('value')
+                    ->maxLength(255),
+                Forms\Components\DateTimePicker::make('email_verified_at'),
+                Forms\Components\TextInput::make('password')
+                    ->password()
                     ->required()
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
+                    ->maxLength(255),
             ]);
     }
 
@@ -42,16 +42,13 @@ class DataResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('lang')
+                Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('group')
+                Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('key')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('deleted_at')
+                Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -84,9 +81,9 @@ class DataResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListData::route('/'),
-            'create' => Pages\CreateData::route('/create'),
-            'edit' => Pages\EditData::route('/{record}/edit'),
+            'index' => Pages\ListUsers::route('/'),
+            'create' => Pages\CreateUser::route('/create'),
+            'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
 }

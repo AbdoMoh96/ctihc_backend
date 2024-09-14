@@ -23,7 +23,24 @@ class TestimonialResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('author_name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('author_occupation')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Textarea::make('subject')
+                    ->required()
+                    ->maxLength(65535)
+                    ->columnSpanFull(),
+                Forms\Components\Textarea::make('image')
+                    ->maxLength(65535)
+                    ->columnSpanFull(),
+                Forms\Components\Toggle::make('approved')
+                    ->required(),
+                Forms\Components\TextInput::make('approved_by')
+                    ->required()
+                    ->numeric(),
             ]);
     }
 
@@ -31,7 +48,27 @@ class TestimonialResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('author_name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('author_occupation')
+                    ->searchable(),
+                Tables\Columns\IconColumn::make('approved')
+                    ->boolean(),
+                Tables\Columns\TextColumn::make('approved_by')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('deleted_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
