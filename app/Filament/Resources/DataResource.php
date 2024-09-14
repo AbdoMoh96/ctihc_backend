@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class DataResource extends Resource
@@ -24,13 +25,13 @@ class DataResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('lang')
-                    ->maxLength(2),
+                    ->maxLength(2)->disabled(),
                 Forms\Components\TextInput::make('group')
                     ->required()
-                    ->maxLength(400),
+                    ->maxLength(400)->disabled(),
                 Forms\Components\TextInput::make('key')
                     ->required()
-                    ->maxLength(400),
+                    ->maxLength(400)->disabled(),
                 Forms\Components\Textarea::make('value')
                     ->required()
                     ->maxLength(65535)
@@ -79,6 +80,16 @@ class DataResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return false;
     }
 
     public static function getPages(): array
