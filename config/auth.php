@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'filament-admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
         'admin' => [
             'driver' => 'sanctum',
             'provider' => 'admins',
