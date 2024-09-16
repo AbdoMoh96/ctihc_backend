@@ -49,6 +49,8 @@ class DataResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('key')
                     ->searchable(),
+                    Tables\Columns\TextColumn::make(name: 'value')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime()
                     ->sortable()
