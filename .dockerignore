@@ -1,7 +1,7 @@
 bootstrap/cache/*
 bootstrap/cache/services.php
 
-storage/*
+
 storage/app/*
 storage/framework/cache/*
 storage/framework/sessions/*
