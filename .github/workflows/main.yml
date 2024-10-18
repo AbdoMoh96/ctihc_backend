@@ -24,9 +24,9 @@ jobs:
           ssh -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER_HOST }} << 'EOF'
             echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S chown -R ${{ secrets.SSH_USER }}:${{ secrets.SSH_USER }} ${{ secrets.PATH_TO_PROJECT }}
             cd ${{ secrets.PATH_TO_PROJECT }}
+            docker compose down
             git pull
             echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S chown -R www-data:www-data ${{ secrets.PATH_TO_PROJECT }}
-            docker compose down
             docker-compose up --build -d
           EOF
         env:
