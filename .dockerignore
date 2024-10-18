@@ -1,5 +1,4 @@
-bootstrap/*
-bootstrap/**
+bootstrap/cache/*
 bootstrap/cache/services.php
 
 storage/*
