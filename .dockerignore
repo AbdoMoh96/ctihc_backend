@@ -1,3 +1,6 @@
+bootstrap/cache/*
+bootstrap/cache/services.php
+
 storage/*
 storage/app/*
 storage/framework/cache/*

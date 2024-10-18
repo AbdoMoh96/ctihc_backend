@@ -62,7 +62,7 @@ ENV PATH="/home/www-data/.composer/vendor/bin:${PATH}"
 USER www-data
 
 # create bootstrap/cache directory
-# RUN mkdir /var/www/html/bootstrap/cache
+RUN mkdir -p /var/www/html/bootstrap/cache
 
 # Run composer install
 RUN composer install --no-interaction
